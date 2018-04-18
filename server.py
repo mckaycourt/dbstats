@@ -26,40 +26,33 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
+        if path[0] == '/api/createUser':
+            query_components = dict(qc.split("=") for qc in query.split("&"))
+            username = query_components["username"]
+            password = query_components["password"]
+            es = Elasticsearch()
+
+            doc = {
+                'username': username,
+                'password': password
+            }
+            res = es.index(index="test-index", doc_type='tweet', id=1, body=doc)
+            print(res['_shards']['successful'])
+
         if path[0] == '/api/login':
             try:
                 query_components = dict(qc.split("=") for qc in query.split("&"))
                 username = query_components["username"]
                 password = query_components["password"]
-                if username:
-                    print(username)
-                if password:
-                    print(password)
-                cnx = mysql.connector.connect(user='testUser', password='Testing123!',
-                                              host='127.0.0.1',
-                                              database='IT350')
-                cursor = cnx.cursor()
-
-                query = "select * from User WHERE username = '" + username + "' AND password = '" + password +"';"
-                cursor.execute(query)
-                obj = {}
-
-                for (a, b, c, d, e, f, g, h) in cursor:
-                    obj['id'] = a
-                    obj['firstName'] = b
-                    obj['lastName'] = c
-                    obj['username'] = d
-                    obj['password'] = e
-                    obj['address'] = f
-                    obj['email'] = g
-                    obj['creditCard'] = h
-                    self.wfile.write(bytes(obj.__str__(), "utf8"))
-                if cursor.rowcount < 0:
+                es = Elasticsearch()
+                res = es.search(index="test-index", body={"query": {"bool": { "must":[{"match": {"username": username}},{"match": {"password": password}}]}}})
+                print("Got %d Hits:" % res['hits']['total'])
+                for hit in res['hits']['hits']:
+                    print("%(username)s: %(password)s" % hit["_source"])
+                if res['hits']['total']:
+                    self.wfile.write(bytes('user found', "utf8"))
+                else:
                     self.wfile.write(bytes('not found', "utf8"))
-
-                cursor.close()
-
-                cnx.close()
 
             except (KeyError, ValueError):
                 print('error')
