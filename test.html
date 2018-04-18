@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+</head>
+<body>
+<ul>
+  <li class="dropdown">
+    <a href="#home" class="dropbtn">mySQL</a>
+    <div class="dropdown-content">
+      <a onclick="getMySQLStatus()" href="#">Status</a>
+      <a onclick="getMySQLLog()" href="#">Usage</a>
+      <a onclick="backupMySQL()" href="#">Backup</a>
+    </div>
+    </li>
+  <li class="dropdown">
+      <a href="#news" class="dropbtn">Mongo</a>
+    <div class="dropdown-content">
+      <a onclick="getMongoStatus()" href="#">Status</a>
+      <a onclick="getMongoUsage()" href="#">Usage</a>
+      <a onclick="getMongoBackup()" href="#">Backup</a>
+    </div>
+    </li>
+  <li class="dropdown">
+    <a href="#" class="dropbtn">Elastic Search</a>
+    <div class="dropdown-content">
+      <a onclick="getEsStatus()" href="#">Status</a>
+      <a href="#">Usage</a>
+      <a href="#">Backup</a>
+    </div>
+  </li>
+</ul>
+<div id="statusHide" style="display: none;"></div>
+<div id="logHide" style="display: none;"></div>
+<div id="data"></div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    function getMySQLLog() {
+
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8081/api/log",
+            data: {format: 'html'}
+        }).done(function (data) {
+            $("#data").html(data);
+        });
+    }
+
+    function getMySQLStatus(){
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8081/api/showStatus",
+            data: {format: 'html'}
+        }).done(function (data) {
+            $("#data").html(data);
+        });
+    }
+    function backupMySQL(){
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8081/api/backup",
+            data: {format: 'html'}
+        }).done(function (data) {
+            $("#data").html(data);
+        });
+    }
+    function getMongoStatus(){
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8081/api/mongoStatus",
+            data: {format: 'html'}
+        }).done(function (data) {
+            $("#data").html(data);
+        });
+    }
+    function getMongoUsage(){
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8081/api/mongoUsage",
+            data: {format: 'html'}
+        }).done(function (data) {
+            $("#data").html(data);
+        });
+    }
+    function getMongoBackup(){
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8081/api/mongoBackup",
+            data: {format: 'html'}
+        }).done(function (data) {
+            $("#data").html(data);
+        });
+    }
+    function getEsStatus(){
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8081/api/esStatus",
+            data: {format: 'html'}
+        }).done(function (data) {
+            $("#data").html(data);
+        });
+    }
+    function getData() {
+        var nug = document.getElementById("status").innerHTML;
+        document.getElementById("statusView").innerHTML = nug;
+        var nug2 = document.getElementById("log").innerHTML;
+        document.getElementById("logView").innerHTML = nug2;
+    }
+
+</script>
