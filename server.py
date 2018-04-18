@@ -37,7 +37,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
                     print(password)
                 cnx = mysql.connector.connect(user='testUser', password='Testing123!',
                                               host='127.0.0.1',
-                                              database='it350')
+                                              database='IT350')
                 cursor = cnx.cursor()
 
                 query = "select * from User WHERE username = '" + username + "' AND password = '" + password +"';"
@@ -74,7 +74,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         if path[0] == '/api/showStatus':
             cnx = mysql.connector.connect(user='testUser', password='Testing123!',
                                           host='127.0.0.1',
-                                          database='it350')
+                                          database='IT350')
 
             cursor = cnx.cursor()
 
@@ -96,7 +96,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         if path[0] == '/api/log':
             cnx = mysql.connector.connect(user='testUser', password='Testing123!',
                                           host='127.0.0.1',
-                                          database='it350')
+                                          database='IT350')
             cursor = cnx.cursor()
 
             query = "select * from mysql.general_log;"
