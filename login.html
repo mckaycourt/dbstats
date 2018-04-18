@@ -150,12 +150,12 @@
     $("#login").click(function () {
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/login?username=" + $("#username").val() + "&password=" + $("#password").val(),
+            url: "http://192.168.50.18:8081/api/login?username=" + $("#username").val() + "&password=" + $("#password").val(),
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
             if(data !== "not found"){
-                window.location = "http://127.0.0.1:8000/test.html"
+                window.location = "http://192.168.50.18:8000/test.html"
             }
         });
     });
