@@ -9,11 +9,7 @@ from urllib.parse import urlparse
 import os
 
 import backup
-import request
-import json
-import sys
 from pymongo import MongoClient
-from elasticsearch import Elasticsearch
 
 # HTTPRequestHandler class
 class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):

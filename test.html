@@ -95,7 +95,7 @@ li.dropdown {
 
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/log",
+            url: "http://192.168.50.18:8081/api/log",
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
@@ -105,7 +105,7 @@ li.dropdown {
     function getMySQLStatus(){
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/showStatus",
+            url: "http://192.168.50.18:8081/api/showStatus",
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
@@ -114,7 +114,7 @@ li.dropdown {
     function backupMySQL(){
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/backup",
+            url: "http://192.168.50.18:8081/api/backup",
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
@@ -123,7 +123,7 @@ li.dropdown {
     function getMongoStatus(){
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/mongoStatus",
+            url: "http://192.168.50.18:8081/api/mongoStatus",
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
@@ -132,7 +132,7 @@ li.dropdown {
     function getMongoUsage(){
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/mongoUsage",
+            url: "http://192.168.50.18:8081/api/mongoUsage",
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
@@ -141,7 +141,7 @@ li.dropdown {
     function getMongoBackup(){
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/mongoBackup",
+            url: "http://192.168.50.18:8081/api/mongoBackup",
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
@@ -150,7 +150,7 @@ li.dropdown {
     function getEsStatus(){
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8081/api/esStatus",
+            url: "http://192.168.50.18:8081/api/esStatus",
             data: {format: 'html'}
         }).done(function (data) {
             $("#data").html(data);
