@@ -28,7 +28,7 @@ def run():
     DB_USER = 'testUser'
     DB_USER_PASSWORD = 'Testing123!'
     # DB_NAME = '/backup/dbnames.txt'
-    DB_NAME = 'it350'
+    DB_NAME = 'IT350'
     BACKUP_PATH = 'backup/dbbackup/'
 
     # Getting current datetime to create seprate backup folder like "12012013-071334".
