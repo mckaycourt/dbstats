@@ -129,7 +129,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(bytes(status.__str__(), "utf8"))
         if path[0] == '/api/esBackup':
             query = "curl -X PUT \"http://localhost:9200/_snapshot/my_backup\" -H 'Content-Type: application/json' -d'"
-            query += "{\"type\": \"fs\", \"settings\": { \"location\": \"~/es/repo\"}}'"
+            query += "{\"type\": \"fs\", \"settings\": { \"location\": \"/var/es/repo\"}}'"
             status = os.popen(query)
             print(status)
 
